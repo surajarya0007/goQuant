@@ -72,7 +72,7 @@ const SpreadIndicator = memo(function SpreadIndicator({ data }: SpreadIndicatorP
             tickFormatter={(timestamp) => formatTime(timestamp)}
             tick={{ fontSize: 12 }}
             stroke="hsl(var(--muted-foreground))"
-            label={{ value: "Time", position: "insideBottom", offset: 0, textAnchor: "middle",fontSize: 12 }}
+            label={{ value: "Time (mm:ss)", position: "insideBottom", offset: 0, textAnchor: "middle",fontSize: 12 }}
           />
 
           <YAxis

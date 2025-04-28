@@ -66,7 +66,7 @@ const OrderbookImbalance: React.FC<OrderbookImbalanceProps> = ({ data }) => {
             tick={{ fontSize: 12 }}
             stroke="hsl(var(--muted-foreground))"
             label={{
-              value: "Time",
+              value: "Time (mm:ss)",
               position: "insideBottom",
               offset: -5,
               textAnchor: "middle",
