@@ -16,7 +16,7 @@ A Next.js dashboard that streams real-time cryptocurrency order book data—bids
 
     git clone https://github.com/surajarya0007/goQuant.git
 
-    cd your-repo
+    cd goQuant
 
 *Install dependencies*
 
