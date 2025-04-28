@@ -29,11 +29,11 @@ export default function ExpandableCard({
   return (
     <>
       <Card className={cn("flex-1 min-h-0 flex flex-col relative", className)}>
-        <CardHeader className="pb-2 flex flex-row items-start justify-between">
+        <CardHeader className="pb-1 flex flex-row items-start justify-between">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <CardTitle className="cursor-help">{title}</CardTitle>
+                <CardTitle className="text-lg font-medium ">{title}</CardTitle>
               </TooltipTrigger>
               <TooltipContent side="top">
                 <p className="max-w-xs">{description}</p>

@@ -1,38 +1,43 @@
+"use client";
 
-"use client"
+import { useState, useEffect } from "react";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { InfoIcon, Moon, Sun, Wifi, WifiOff } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import Orderbook from "@/components/orderbook";
+import SpreadIndicator from "@/components/spread-indicator";
 
-import { useState, useEffect } from "react"
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
-import { InfoIcon, Moon, Sun, Wifi, WifiOff } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
-import Orderbook from "@/components/orderbook"
-import SpreadIndicator from "@/components/spread-indicator"
-
-import MarketDepth from "@/components/market-depth"
-import TradingPairSelector from "@/components/trading-pair-selector"
-import ExpandableCard from "@/components/expandable-card"
-import useOrderbook from "@/hooks/use-orderbook"
-import { TooltipProvider } from "@/components/ui/tooltip"
-import OrderbookImbalance from "@/components/orderbook-imbalance"
-
+import MarketDepth from "@/components/market-depth";
+import TradingPairSelector from "@/components/trading-pair-selector";
+import ExpandableCard from "@/components/expandable-card";
+import useOrderbook from "@/hooks/use-orderbook";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import OrderbookImbalance from "@/components/orderbook-imbalance";
 
 export default function Home() {
-  const [pair, setPair] = useState("btcusdt")
-  const { orderbook, spreadHistory, imbalanceSeries: rawImbalanceSeries, depthData, connectionStatus, errorMessage } = useOrderbook(pair)
+  const [pair, setPair] = useState("btcusdt");
+  const {
+    orderbook,
+    spreadHistory,
+    imbalanceSeries: rawImbalanceSeries,
+    depthData,
+    connectionStatus,
+    errorMessage,
+  } = useOrderbook(pair);
 
   // Transform imbalanceSeries to include timestamps
   const imbalanceSeries = rawImbalanceSeries.map((point, index) => ({
     ...point,
     timestamp: Date.now() - index * 60000, // Example: Add a timestamp (1-minute intervals)
-  }))
-  const { theme, setTheme } = useTheme()
-  const [mounted, setMounted] = useState(false)
+  }));
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   // Ensure theme toggle only renders client-side
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   return (
     <TooltipProvider>
@@ -40,8 +45,12 @@ export default function Home() {
         <div className="container mx-auto flex flex-col">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight">Crypto Orderbook</h1>
-              <p className="text-muted-foreground">Real-time market data and indicators</p>
+              <h1 className="text-3xl font-bold tracking-tight">
+                Crypto Orderbook
+              </h1>
+              <p className="text-muted-foreground">
+                Real-time market data and indicators
+              </p>
             </div>
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2">
@@ -56,8 +65,8 @@ export default function Home() {
                   {connectionStatus === "connected"
                     ? "Connected to Binance"
                     : connectionStatus === "connecting"
-                      ? "Connecting..."
-                      : "Using fallback data"}
+                    ? "Connecting..."
+                    : "Using fallback data"}
                 </span>
               </div>
               <TradingPairSelector value={pair} onChange={setPair} />
@@ -68,7 +77,11 @@ export default function Home() {
                   onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                   aria-label="Toggle theme"
                 >
-                  {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  {theme === "dark" ? (
+                    <Sun className="h-5 w-5" />
+                  ) : (
+                    <Moon className="h-5 w-5" />
+                  )}
                 </Button>
               )}
             </div>
@@ -83,20 +96,20 @@ export default function Home() {
           )}
 
           {/* Main content area */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 ">
+          <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
             {/* Orderbook (3/5 width on large screens) */}
-            <div className=" lg:col-span-3 h-[500px] md:h-[650px]">
+            <div className=" lg:col-span-4 h-9/10 h-screen md:h-[690px]">
               <ExpandableCard
                 title="Orderbook"
                 description={`Real-time bids and asks for ${pair.toUpperCase()}`}
                 className="h-full"
-              >
+              > 
                 <Orderbook data={orderbook} />
               </ExpandableCard>
             </div>
 
             {/* Indicators (2/5 width on large screens) */}
-            <div className="lg:col-span-2 flex flex-col gap-4 h-[500px] md:h-[650px]">
+            <div className="lg:col-span-3 flex flex-col gap-4 h-screen md:h-[690px]">
               <ExpandableCard
                 title="Spread Indicator"
                 description="1-minute rolling spread between best bid and ask"
@@ -125,6 +138,5 @@ export default function Home() {
         </div>
       </main>
     </TooltipProvider>
-  )
+  );
 }
-
