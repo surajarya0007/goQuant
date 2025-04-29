@@ -83,7 +83,7 @@ export default function Orderbook({ data }: OrderbookProps) {
   const askPressure = total > 0 ? totalAsk / total * 100 : 50
 
   return (
-    <div className="flex flex-col gap-4 h-full">
+    <div className="flex flex-col gap-4 h-full pl-4 pt-3">
       <div className="flex flex-col gap-1">
         <div className="flex justify-between text-xs">
           <span>Bid Pressure: {bidPressure.toFixed(1)}%</span>

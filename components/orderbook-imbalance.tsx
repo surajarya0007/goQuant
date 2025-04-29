@@ -68,7 +68,7 @@ const OrderbookImbalance: React.FC<OrderbookImbalanceProps> = ({ data }) => {
             label={{
               value: "Time (mm:ss)",
               position: "insideBottom",
-              offset: -5,
+              offset: -3,
               textAnchor: "middle",
               fontSize: 12,
             }}
@@ -82,6 +82,8 @@ const OrderbookImbalance: React.FC<OrderbookImbalanceProps> = ({ data }) => {
               angle: -90,
               textAnchor: "middle",
               fontSize: 12,
+              position: "insideLeft",
+              offset: 20,
             }}
           />
 

@@ -33,7 +33,7 @@ export default function ExpandableCard({
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <CardTitle className="text-lg font-medium ">{title}</CardTitle>
+                <CardTitle className="text-lg font-medium">{title}</CardTitle>
               </TooltipTrigger>
               <TooltipContent side="top">
                 <p className="max-w-xs">{description}</p>
@@ -53,11 +53,11 @@ export default function ExpandableCard({
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="w-[90vw] max-w-[1200px] h-[90vh] max-h-[900px] p-0">
-          <DialogHeader className="p-6">
+          <DialogHeader className="p-5">
             <DialogTitle>{title}</DialogTitle>
             <p className="text-sm text-muted-foreground mt-1">{description}</p>
           </DialogHeader>
-          <div className="p-6 pt-2 h-full overflow-auto">{children}</div>
+          <div className="p-0 py-3 h-full overflow-auto">{children}</div>
         </DialogContent>
       </Dialog>
     </>

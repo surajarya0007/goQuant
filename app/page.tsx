@@ -41,10 +41,10 @@ export default function Home() {
 
   return (
     <TooltipProvider>
-      <main className="h-full p-4 md:p-6 bg-background">
-        <div className="container mx-auto flex flex-col">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-4">
-            <div>
+      <main className="h-full p-0 md:p-6 bg-background">
+        <div className="container px-4 mx-auto flex flex-col">
+          <div className="flex flex-col  md:flex-row justify-between items-start md:items-center gap-4 mb-4">
+            <div className="flex flex-col w-full py-4 md:p-0">
               <h1 className="text-3xl font-bold tracking-tight">
                 Crypto Orderbook
               </h1>
@@ -52,8 +52,8 @@ export default function Home() {
                 Real-time market data and indicators
               </p>
             </div>
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2">
+            <div className="flex justify-between md:justify-end w-full items-center gap-4">
+              <div className="hidden md:flex items-center gap-2">
                 {connectionStatus === "connected" ? (
                   <Wifi className="h-4 w-4 text-green-500" />
                 ) : connectionStatus === "connecting" ? (
@@ -98,7 +98,7 @@ export default function Home() {
           {/* Main content area */}
           <div className="grid grid-cols-1 lg:grid-cols-7 gap-4">
             {/* Orderbook (3/5 width on large screens) */}
-            <div className=" lg:col-span-4 h-9/10 h-screen md:h-[690px]">
+            <div className="lg:col-span-4 h-full md:h-[690px]">
               <ExpandableCard
                 title="Orderbook"
                 description={`Real-time bids and asks for ${pair.toUpperCase()}`}
